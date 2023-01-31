@@ -16,31 +16,36 @@ import org.springframework.beans.factory.annotation.Autowired;
 // public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 public class WebSecurityConfig {
 
-
 	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http
-			.authorizeRequests()
-				.anyRequest().fullyAuthenticated()
-				.and()
-			.formLogin();
-
-		return http.build();
+	ActiveDirectoryLdapAuthenticationProvider authenticationProvider() {
+		return new ActiveDirectoryLdapAuthenticationProvider("beritasatu.id", "ldap://172.20.6.7");
+		// return new ActiveDirectoryLdapAuthenticationProvider("berita1.tv", "ldap://192.168.10.10");
 	}
+	
+	// @Bean
+	// public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+	// 	http
+	// 		.authorizeRequests()
+	// 			.anyRequest().fullyAuthenticated()
+	// 			.and()
+	// 		.formLogin();
 
-	@Autowired
-	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth
-			.ldapAuthentication()
-				.userDnPatterns("uid={0},ou=people")
-				.groupSearchBase("ou=Data")
-				.contextSource()
+	// 	return http.build();
+	// }
+
+	// @Autowired
+	// public void configure(AuthenticationManagerBuilder auth) throws Exception {
+	// 	auth
+	// 		.ldapAuthentication()
+	// 			.userDnPatterns("uid={0},ou=people")
+	// 			.groupSearchBase("ou=Data")
+	// 			.contextSource()
 					
-					.and()
-				.passwordCompare()
-					.passwordEncoder(new BCryptPasswordEncoder())
-					.passwordAttribute("userPassword");
-	}
+	// 				.and()
+	// 			.passwordCompare()
+	// 				.passwordEncoder(new BCryptPasswordEncoder())
+	// 				.passwordAttribute("userPassword");
+	// }
 
 	// @Override
     // protected void configure(HttpSecurity http) throws Exception {
