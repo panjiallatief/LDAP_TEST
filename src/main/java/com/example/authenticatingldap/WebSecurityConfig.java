@@ -18,8 +18,8 @@ public class WebSecurityConfig {
 
 	@Bean
 	ActiveDirectoryLdapAuthenticationProvider authenticationProvider() {
-		return new ActiveDirectoryLdapAuthenticationProvider("beritasatu.id", "ldap://172.20.6.7");
-		// return new ActiveDirectoryLdapAuthenticationProvider("berita1.tv", "ldap://192.168.10.10");
+		// return new ActiveDirectoryLdapAuthenticationProvider("beritasatu.id", "ldap://172.20.6.7");
+		return new ActiveDirectoryLdapAuthenticationProvider("berita1.tv", "ldap://192.168.10.10");
 	}
 	
 	// @Bean
